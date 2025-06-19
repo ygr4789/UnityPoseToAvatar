@@ -1,6 +1,7 @@
 using UnityEngine;
 using Mediapipe.Tasks.Components.Containers;
-using Mediapipe.Tasks.Vision.PoseLandmarker;
+using System.Collections.Generic;
+using System;
 
 public enum LandmarkID
 {
@@ -46,9 +47,20 @@ public class LandmarkWrapper
     // private Quaternion _initialTilt = Quaternion.AngleAxis(10f, Vector3.right);
     public bool Initialized => _landmarks.landmarks is not null;
 
+    private Dictionary<LandmarkID, KalmanFilter> kf = new Dictionary<LandmarkID, KalmanFilter>();
+
+    public LandmarkWrapper()
+    {
+        foreach (LandmarkID id in Enum.GetValues(typeof(LandmarkID)))
+        {
+            kf[id] = new KalmanFilter(6, 3);
+        }
+    }
+
     public Vector3 PosOf(LandmarkID id)
     {
         var landmark = _landmarks.landmarks[(int)id];
+
         var x = landmark.x;
         var y = -landmark.y;
         var z = landmark.z;
@@ -59,10 +71,11 @@ public class LandmarkWrapper
 
     public bool PresenceOf(LandmarkID id, float threshold)
     {
-        var landmark = _landmarks.landmarks[(int)id];
-        return landmark.presence > threshold;
+        // var landmark = _landmarks.landmarks[(int)id];
+        // return landmark.presence > threshold;
+        return true;
     }
-    
+
     public float VisibilityOf(LandmarkID id)
     {
         var landmark = _landmarks.landmarks[(int)id];

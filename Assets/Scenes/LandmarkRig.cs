@@ -39,13 +39,13 @@ public class LandmarkRig : MonoBehaviour
         var boneRightLowerLeg = new Bone(_animator.GetBoneTransform(HumanBodyBones.RightLowerLeg), boneRightUpperLeg);
         var boneRightFoot = new Bone(_animator.GetBoneTransform(HumanBodyBones.RightFoot), boneRightLowerLeg);
         var boneRightToes = new Bone(_animator.GetBoneTransform(HumanBodyBones.RightToes), boneRightFoot);
-        
+ 
         var leftUpperArmHelper = new TwoLandmarkBoneHelper(_landmarkWrapper, LandmarkID.LeftShoulder, LandmarkID.LeftElbow, boneLeftUpperArm);
         var leftLowerArmHelper = new TwoLandmarkBoneHelper(_landmarkWrapper, LandmarkID.LeftElbow, LandmarkID.LeftWrist, boneLeftLowerArm);
-        
+
         var rightUpperArmHelper = new TwoLandmarkBoneHelper(_landmarkWrapper, LandmarkID.RightShoulder, LandmarkID.RightElbow, boneRightUpperArm);
         var rightLowerArmHelper = new TwoLandmarkBoneHelper(_landmarkWrapper, LandmarkID.RightElbow, LandmarkID.RightWrist, boneRightLowerArm);
-        
+
         var leftUpperLegHelper = new TwoLandmarkBoneHelper(_landmarkWrapper, LandmarkID.LeftHip, LandmarkID.LeftKnee, boneLeftUpperLeg);
         var leftLowerLegHelper = new TwoLandmarkBoneHelper(_landmarkWrapper, LandmarkID.LeftKnee, LandmarkID.LeftAnkle, boneLeftLowerLeg);
         var leftFootHelper = new TwoLandmarkBoneHelper(_landmarkWrapper, LandmarkID.LeftAnkle, LandmarkID.LeftFootIndex, boneLeftFoot);
@@ -55,7 +55,7 @@ public class LandmarkRig : MonoBehaviour
         var rightLowerLegHelper = new TwoLandmarkBoneHelper(_landmarkWrapper, LandmarkID.RightKnee, LandmarkID.RightAnkle, boneRightLowerLeg);
         var rightFootHelper = new TwoLandmarkBoneHelper(_landmarkWrapper, LandmarkID.RightAnkle, LandmarkID.RightFootIndex, boneRightFoot);
         var rightToesHelper = new TwoLandmarkBoneHelper(_landmarkWrapper, LandmarkID.RightHeel, LandmarkID.RightFootIndex, boneRightToes);
-        
+
         var bodyHelper = new BodyLandmarkBonesHelper(
             _landmarkWrapper,
             boneHips,
@@ -68,10 +68,10 @@ public class LandmarkRig : MonoBehaviour
             boneRightShoulder
             );
         var headHelper = new HeadRotationHelper(_landmarkWrapper, boneNeck, boneHead);
-        
+
         _helpers.Add(bodyHelper);
         _helpers.Add(headHelper);
-        
+
         _helpers.Add(leftUpperArmHelper);
         _helpers.Add(leftLowerArmHelper);
         _helpers.Add(rightUpperArmHelper);
@@ -84,7 +84,6 @@ public class LandmarkRig : MonoBehaviour
         _helpers.Add(rightLowerLegHelper);
         _helpers.Add(rightFootHelper);
         _helpers.Add(rightToesHelper);
-
     }
 
     private void Update()

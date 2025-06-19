@@ -201,11 +201,11 @@ public class HeadRotationHelper : BoneRotationHelper
         var leftEyePos = LandmarkWrapper.PosOf(LandmarkID.LeftEye);
         var rightEyePos = LandmarkWrapper.PosOf(LandmarkID.RightEye);
         var facePos = (nosePos + leftEyePos + rightEyePos) / 3;
-        
+
         var faceForward = (facePos - centerEarPos).normalized;
-        var faceUp = Vector3.Cross( leftEarPos - rightEarPos, facePos - centerEarPos).normalized;
+        var faceUp = Vector3.Cross(leftEarPos - rightEarPos, facePos - centerEarPos).normalized;
         var faceRotation = Quaternion.LookRotation(faceForward, faceUp);
-        
+
         _neck.Rotation = faceRotation;
     }
 }
